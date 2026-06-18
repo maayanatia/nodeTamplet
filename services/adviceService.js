@@ -1,0 +1,14 @@
+const ADVICE_API_URL = 'https://api.adviceslip.com/advice';
+
+export const fetchRandomAdvice = async () => {
+  const response = await fetch(ADVICE_API_URL, {
+    headers: { Accept: 'application/json' }
+  });
+
+  if (!response.ok) {
+    throw new Error('Unable to fetch advice');
+  }
+
+  const data = await response.json();
+  return data?.slip?.advice ?? 'No advice available';
+};
