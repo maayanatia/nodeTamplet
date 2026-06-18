@@ -1,8 +1,6 @@
 import express from 'express';
 import adviceRoutes from './adviceRoutes.js';
 import jokesRoutes from './jokesRoutes.js';
-import { rateLimiter } from '../utils/rateLimiter.js';
-
 const router = express.Router();
 
 router.use(adviceRoutes);

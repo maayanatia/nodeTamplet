@@ -1,5 +1,7 @@
 import express from 'express';
 import { getRandomJoke } from '../controllers/jokesController.js';
+import { rateLimiter } from '../utils/rateLimiter.js';
+
 
 const router = express.Router();
 
