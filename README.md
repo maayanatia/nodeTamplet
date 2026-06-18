@@ -7,7 +7,7 @@ This project is a simple Node.js Express API that returns:
 
 ## Run instructions
 
-1. Open a terminal in the project folder: `c:\Users\maaya\Downloads\nodeTamplet\nodeTamplet`
+1. Open a terminal in the project folder
 2. Install dependencies:
    - `npm install`
 3. Start the server:
