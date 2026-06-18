@@ -3,6 +3,6 @@ import { getRandomJoke } from '../controllers/jokesController.js';
 
 const router = express.Router();
 
-router.get('/jokes/api', rateLimiter('joke', 1500), getRandomJoke);
+router.get('/jokes/api', rateLimiter('joke', 9500), getRandomJoke);
 
 export default router;
