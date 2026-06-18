@@ -6,12 +6,22 @@ const render = (data) => {
   output.textContent = JSON.stringify(data, null, 2);
 };
 
-const request = async (path) => {
+const request = async (path, button) => {
+  button.disabled = true;
   output.textContent = 'Loading...';
-  const response = await fetch(path);
-  const data = await response.json();
-  render(data);
+
+  try {
+    const response = await fetch(path);
+    const data = await response.json();
+    render(data);
+  } catch (error) {
+    render({ error: error.message });
+  } finally {
+    setTimeout(() => {
+      button.disabled = false;
+    }, 800);
+  }
 };
 
-loadAdviceButton.addEventListener('click', () => request('/api/advice/api'));
-loadJokeButton.addEventListener('click', () => request('/api/jokes/api'));
+loadAdviceButton.addEventListener('click', () => request('/api/advice/api', loadAdviceButton));
+loadJokeButton.addEventListener('click', () => request('/api/jokes/api', loadJokeButton));

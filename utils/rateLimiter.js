@@ -1,16 +1,21 @@
-const lastRequestTimestamps = new Map();
+const requestTimestamps = new Map();
 
-export const rateLimiter = (key, windowMs = 91000)=> {
-    return (req, res, next) => {
-        const now = Date.now();
-        const lastRequestTime = lastRequestTimestamps.get(key) ?? 0;
+export const rateLimiter = (routeName, windowMs = 1500) => {
+  const delay = Math.max(windowMs, 500);
 
-        if(now - lastRequestTime < windowMs) {
-            return res.status(429).json({ error: 'Too many requests, please try again later.' });
-        } 
+  return (req, res, next) => {
+    const key = `${req.ip}:${routeName}`;
+    const now = Date.now();
+    const lastRequestTime = requestTimestamps.get(key) ?? 0;
 
-        lastRequestTimestamps.set(key, now);
-        next();
-    };
+    if (now - lastRequestTime < delay) {
+      return res.status(429).json({
+        error: 'Too many requests. Please wait a moment before retrying.'
+      });
+    }
+
+    requestTimestamps.set(key, now);
+    next();
+  };
 };
 
