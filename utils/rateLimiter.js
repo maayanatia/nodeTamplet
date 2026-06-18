@@ -1,6 +1,6 @@
 const lastRequestTimestamps = new Map();
 
-export const rateLimiter = (key, windowMs = 1000)=> {
+export const rateLimiter = (key, windowMs = 91000)=> {
     return (req, res, next) => {
         const now = Date.now();
         const lastRequestTime = lastRequestTimestamps.get(key) ?? 0;
