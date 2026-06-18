@@ -1,5 +1,5 @@
 export const fetchRandomAdvice = async () => {
-  const ADVICE_API_URL = process.env.ADVICE_API_URL || 'https://api.adviceslip.com/advice';
+  const ADVICE_API_URL = process.env.ADVICE_API_URL;
   const response = await fetch(ADVICE_API_URL, {
     headers: { Accept: 'application/json' }
   });
